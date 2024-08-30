@@ -22,12 +22,12 @@ export default function AsideForm() {
                     <FormInput label="E-mail" inputType="email" placeholder="exemplo@gmail.com" />
                     <FormInput label="Senha" inputType="password" placeholder="********" />
                 </form>
-                <section className="flex justify-between w-full">
+                <section className="flex justify-center mt-4 mb-4 w-full gap-10">
                     <Checkbox />
-                    <a href="#" className="text-text-primary">Esqueceu a senha?</a>
+                    <a href="#" className="text-primary-blue">Esqueceu a senha?</a>
                 </section>
                 <Button />
-                <section className="flex flex-col items-center mt-4">
+                <section className="flex justify-center mt-4 gap-2">
                     <label className="text-text-primary">Não tem uma conta?</label>
                     <a href="#" className="text-primary-blue">Cadastre-se</a>
                 </section>
