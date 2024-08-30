@@ -2,9 +2,12 @@ import FormInput from "../FormInput/FormInput";
 import Checkbox from "../Checkbox/Checkbox";
 import Button from "../Button/Button";
 import AsideFormProps from "../../types/AsideFormProps";
+import { useSection } from "../../hooks/useSection";
 
 
 export default function AsideForm({ title, formInputs, checkboxLabel, buttonTitle }: AsideFormProps) {
+    const { showRegisterSection } = useSection();
+
     return (
         <aside className="max-w-full lg:w-96 bg-white flex flex-col items-center justify-center lg:fixed lg:left-0 lg:top-0 lg:h-full p-4">
             <section className="flex flex-col items-center w-full pb-8">
@@ -35,10 +38,12 @@ export default function AsideForm({ title, formInputs, checkboxLabel, buttonTitl
                     <a href="#" className="text-primary-blue">Esqueceu a senha?</a>
                 </section>
                 <Button title={ buttonTitle } />
-                <section className="flex justify-center mt-4 gap-2">
-                    <label className="text-text-primary">Não tem uma conta?</label>
-                    <a href={` /register `} className="text-primary-blue">Cadastre-se</a>
-                </section>
+                {showRegisterSection && (
+                    <section className="flex justify-center mt-4 gap-2">
+                        <label className="text-text-primary">Não tem uma conta?</label>
+                        <a href={`/register`} className="text-primary-blue">Cadastre-se</a>
+                    </section>
+                )}
             </section>
         </aside>
     )
