@@ -1,4 +1,4 @@
-import AsideForm from "../../components/Forms/AsideForm"
+import AsideForm from "../../components/Forms/AuthForm"
 
 export default function SignIn() {
     return (

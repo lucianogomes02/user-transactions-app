@@ -1,7 +1,7 @@
 import FormInput from "../FormInput/FormInput";
 import Checkbox from "../Checkbox/Checkbox";
 import Button from "../Button/Button";
-import AsideFormProps from "../../types/AsideFormProps";
+import AsideFormProps from "../../types/AuthFormProps";
 
 interface User {
     name: string;
