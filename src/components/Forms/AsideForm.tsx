@@ -7,7 +7,8 @@ import AsideFormProps from "../../types/AsideFormProps";
 export default function AsideForm({ 
     title, formInputs, checkboxLabel, 
     buttonTitle, authSectionLabel, 
-    authSectionLink, authSectionLinkText 
+    authSectionLink, authSectionLinkText,
+    showForgotPassword
 }: AsideFormProps) {
     return (
         <aside className="max-w-full lg:w-96 bg-white flex flex-col items-center justify-center lg:fixed lg:left-0 lg:top-0 lg:h-full p-4">
@@ -34,9 +35,11 @@ export default function AsideForm({
                         />
                     ))}
                 </form>
-                <section className="flex justify-center mt-4 mb-4 w-full gap-10">
-                    <Checkbox label={ checkboxLabel }/>
-                    <a href="#" className="text-primary-blue">Esqueceu a senha?</a>
+                <section className="flex justify-center mt-4 mb-4 w-full gap-20 flex-wrap">
+                    <Checkbox label={checkboxLabel} />
+                    {showForgotPassword && 
+                        <a href="#" className="text-primary-blue">Esqueceu a senha?</a>
+                    }
                 </section>
                 <Button title={ buttonTitle } />
                 <section className="flex justify-center mt-4 gap-2">

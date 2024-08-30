@@ -12,18 +12,19 @@ export default function SignIn() {
                     { label: "Senha", inputType: "password", placeholder: "Digite sua senha" },
                     { label: "Confirme sua senha", inputType: "password", placeholder: "Digite sua senha novamente" }
                 ]}
-                checkboxLabel="Ao se cadastrar você concorda com nossos Termos de Uso e Política de Privacidade."
+                checkboxLabel="Concordo com nossos Termos de Uso e Política de Privacidade."
                 buttonTitle="Cadastrar"
                 authSectionLabel="Já tem uma conta?"
                 authSectionLink="/login"
                 authSectionLinkText="Faça login"
+                showForgotPassword={false}
             />
-            <section className="flex-grow flex items-center justify-center lg:ml-96 p-4">
+            <section className="flex-grow flex items-center justify-center lg:ml-72 p-4">
                 <figure className="flex items-center lg:items-start lg:justify-between">
                     <img 
                         src="src/assets/signin-illustration.svg" 
                         alt="Ilustração Home"
-                        className="w-full max-w-xs lg:max-w-2xl md:max-w-xs sm:max-w-44"
+                        className="w-full max-w-xs lg:max-w-lg md:max-w-xs sm:max-w-20"
                     />
                     <figcaption className="
                         flex items-center 
@@ -31,13 +32,13 @@ export default function SignIn() {
                         p-4 
                         mt-4
                         lg:mt-0 lg:ml-6 
-                        text-center lg:text-left
-                        lg:text-7xl md:text-4xl
+                        text-balance lg:text-left
+                        lg:text-5xl md:text-4xl
                         font-bold
                         text-primary-blue
-                        w-full"
+                        w-auto leading-tight"
                     >
-                        Faça transações e administre sua(s) carteiras.
+                        Faça transações e administre suas carteiras.
                     </figcaption>
                 </figure>
             </section>

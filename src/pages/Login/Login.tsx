@@ -14,6 +14,7 @@ export default function Login() {
                 authSectionLabel="Não tem uma conta?"
                 authSectionLink="/register"
                 authSectionLinkText="Cadastre-se"
+                showForgotPassword={true}
             />
             <section className="flex-grow flex items-center justify-center lg:ml-96 p-4">
                 <figure className="flex items-center lg:items-start lg:justify-between">

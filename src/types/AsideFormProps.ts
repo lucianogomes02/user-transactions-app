@@ -8,4 +8,5 @@ export default interface AsideFormProps {
     authSectionLabel: string;
     authSectionLink: string;
     authSectionLinkText: string;
+    showForgotPassword: boolean;
   }
