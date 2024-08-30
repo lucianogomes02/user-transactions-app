@@ -23,7 +23,7 @@ export default function AsideForm() {
                     <FormInput label="Senha" inputType="password" placeholder="********" />
                 </form>
                 <section className="flex justify-center mt-4 mb-4 w-full gap-10">
-                    <Checkbox />
+                    <Checkbox label="Lembrar-me"/>
                     <a href="#" className="text-primary-blue">Esqueceu a senha?</a>
                 </section>
                 <Button />
