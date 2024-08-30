@@ -1,6 +1,13 @@
-export default function Button() {
+interface ButtonProps {
+    title: string;
+    type?: "submit" | "button";
+    submitHandler?: (event: React.FormEvent) => void;
+}
+
+export default function Button({ title, type }: ButtonProps) {
     return (
-        <button 
+        <button
+            type={ type } 
             className="
                 w-80 h-12 
                 bg-primary-blue 
@@ -11,7 +18,7 @@ export default function Button() {
                 hover:bg-primary-blue-dark
             "
         >
-            Entrar
+            { title }
         </button>
     )
 }
