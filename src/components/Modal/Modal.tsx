@@ -3,10 +3,12 @@ import Button from "../Button/Button";
 
 interface ModalProps {
     isOpen: boolean;
+    image?: string;
+    message?: string;
     onClose: () => void;
 }
 
-export default function Modal({ isOpen, onClose }: ModalProps) {
+export default function Modal({ isOpen, image, message, onClose }: ModalProps) {
     return isOpen && (
         <section 
             className="fixed inset-0 flex items-center justify-center bg-opacity-50 backdrop-blur-sm" 
@@ -21,9 +23,9 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
                     onClick={onClose} 
                 />
                 <figure className="w-40 h-40 rounded-full flex items-center justify-center">
-                    <img src="src/assets/modal-success.svg" alt="Sucesso" className="w-40 h-40" />
+                    <img src={ image } alt="Sucesso" className="w-40 h-40" />
                 </figure>
-                <h1 className="text-3xl font-bold text-text-primary">Usuário cadastrado com sucesso!</h1>
+                <h1 className="text-3xl font-bold text-text-primary">{ message }</h1>
                 <Button title="Fechar" type="submit" onClick={onClose}/>
             </section>
         </section>

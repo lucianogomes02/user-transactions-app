@@ -35,7 +35,7 @@ export default function AsideForm({
         users.push(user);
         console.log(users);
         form.reset();
-        setIsOpen(!isOpen);
+        setIsOpen(!isOpen, "src/assets/modal-success.svg", "Cadastro realizado com sucesso!");
     }
 
     const handleLogin = (event: React.FormEvent) => {
