@@ -3,7 +3,7 @@ import FormInput from "../FormInput/FormInput";
 import Checkbox from "../Checkbox/Checkbox";
 import Button from "../Button/Button";
 import AsideFormProps from "../../types/AuthFormProps";
-import { useModal } from "../../hooks/useModal";
+import { ShowErrorModal, ShowSuccessModal } from "../../libs/Modal";
 
 interface User {
     name: string;
@@ -18,24 +18,28 @@ export default function AsideForm({
     authSectionLink, authSectionLinkText,
     showForgotPassword, formType
 }: AsideFormProps) {
-    const { isOpen, setIsOpen } = useModal();
-
     const users: User[] = [];
 
-    const handleRegister = (event: React.FormEvent) => { 
-        event.preventDefault();
-        const form = event.target as HTMLFormElement;
-        const formData = new FormData(form);
-        const user = {
-            name: formData.get('name') as string,
-            cpf: formData.get('cpf') as string,
-            email: formData.get('email') as string,
-            password: formData.get('password') as string,
+    const handleRegister = (event: React.FormEvent) => {
+        try {
+            event.preventDefault();
+            const form = event.target as HTMLFormElement;
+            const formData = new FormData(form);
+            const user = {
+                name: formData.get('name') as string,
+                cpf: formData.get('cpf') as string,
+                email: formData.get('email') as string,
+                password: formData.get('password') as string,
+            }
+            users.push(user);
+            console.log(users);
+            ShowSuccessModal("Cadastro realizado com sucesso!");
+        } catch (error: unknown | Error) {
+            ShowErrorModal((error as Error).message);
+        } finally {
+            const form = event.target as HTMLFormElement;
+            form.reset();
         }
-        users.push(user);
-        console.log(users);
-        form.reset();
-        setIsOpen(!isOpen, "src/assets/modal-success.svg", "Cadastro realizado com sucesso!");
     }
 
     const handleLogin = (event: React.FormEvent) => {
