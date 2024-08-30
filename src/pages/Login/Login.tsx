@@ -1,11 +1,6 @@
 import AsideForm from "../../components/Forms/AsideForm"
-import { useSection } from "../../hooks/useSection";
 
 export default function Login() {
-    const { setShowRegisterSection } = useSection();
-
-    setShowRegisterSection(true);
-
     return (
         <main className="min-h-screen flex flex-col lg:flex-row">
             <AsideForm

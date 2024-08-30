@@ -3,12 +3,12 @@ import './App.css'
 import './index.css'
 import Login from './pages/Login/Login'
 import SignIn from './pages/SignIn/SignIn'
-import { SectionsControllProvider } from './contexts/SectionsControllContext'
+import { AuthContextProvider } from './contexts/AuthContext'
 
 function App() {
   return (
     <>
-      <SectionsControllProvider>
+      <AuthContextProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Login />} />
@@ -16,7 +16,7 @@ function App() {
             <Route path="/register" element={<SignIn />} />
           </Routes>
         </BrowserRouter>
-      </SectionsControllProvider>
+      </AuthContextProvider>
     </>
   )
 }

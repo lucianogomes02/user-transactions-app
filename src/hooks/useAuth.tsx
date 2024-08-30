@@ -1,8 +1,8 @@
 import { useContext } from "react"
-import { SectionsControllContext } from "../contexts/SectionsControllContext"
+import { AuthContext } from "../contexts/AuthContext"
 
-export const useSection = () => {
-    const context = useContext(SectionsControllContext);
+export const useAuth = () => {
+    const context = useContext(AuthContext);
     if (!context) {
         throw new Error("useSection must be used within a SectionsControllProvider");
     }
