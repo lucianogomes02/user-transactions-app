@@ -6,8 +6,8 @@ export default function Login() {
             <AsideForm
                 title="Faça seu login"
                 formInputs={[
-                    { label: "E-mail", inputType: "email", placeholder: "Digite seu e-mail" },
-                    { label: "Senha", inputType: "password", placeholder: "Digite sua senha" }
+                    { name: "email", label: "E-mail", inputType: "email", placeholder: "Digite seu e-mail" },
+                    { name: "password", label: "Senha", inputType: "password", placeholder: "Digite sua senha" }
                 ]}
                 checkboxLabel="Lembrar-me"
                 buttonTitle="Entrar"
@@ -15,6 +15,7 @@ export default function Login() {
                 authSectionLink="/register"
                 authSectionLinkText="Cadastre-se"
                 showForgotPassword={true}
+                formType="login"
             />
             <section className="flex-grow flex items-center justify-center lg:ml-96 p-4">
                 <figure className="flex items-center lg:items-start lg:justify-between">

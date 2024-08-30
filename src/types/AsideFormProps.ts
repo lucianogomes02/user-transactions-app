@@ -9,4 +9,5 @@ export default interface AsideFormProps {
     authSectionLink: string;
     authSectionLinkText: string;
     showForgotPassword: boolean;
+    formType: "login" | "register";
   }

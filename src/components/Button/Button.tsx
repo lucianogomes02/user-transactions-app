@@ -1,10 +1,13 @@
 interface ButtonProps {
     title: string;
+    type?: "submit" | "button";
+    submitHandler?: (event: React.FormEvent) => void;
 }
 
-export default function Button({ title }: ButtonProps) {
+export default function Button({ title, type }: ButtonProps) {
     return (
-        <button 
+        <button
+            type={ type } 
             className="
                 w-80 h-12 
                 bg-primary-blue 

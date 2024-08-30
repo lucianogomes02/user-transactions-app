@@ -6,11 +6,11 @@ export default function SignIn() {
             <AsideForm 
                 title="Cadastre-se"
                 formInputs={[
-                    { label: "Nome", inputType: "text", placeholder: "Digite seu nome completo" },
-                    { label: "CPF", inputType: "text", placeholder: "Digite seu CPF" },
-                    { label: "E-mail", inputType: "email", placeholder: "Digite seu e-mail" },
-                    { label: "Senha", inputType: "password", placeholder: "Digite sua senha" },
-                    { label: "Confirme sua senha", inputType: "password", placeholder: "Digite sua senha novamente" }
+                    { name: "name", label: "Nome", inputType: "text", placeholder: "Digite seu nome completo" },
+                    { name: "cpf", label: "CPF", inputType: "text", placeholder: "Digite seu CPF" },
+                    { name: "email", label: "E-mail", inputType: "email", placeholder: "Digite seu e-mail" },
+                    { name: "password", label: "Senha", inputType: "password", placeholder: "Digite sua senha" },
+                    { name: "passwordConfirmation", label: "Confirme sua senha", inputType: "password", placeholder: "Digite sua senha novamente" }
                 ]}
                 checkboxLabel="Concordo com nossos Termos de Uso e Política de Privacidade."
                 buttonTitle="Cadastrar"
@@ -18,6 +18,7 @@ export default function SignIn() {
                 authSectionLink="/login"
                 authSectionLinkText="Faça login"
                 showForgotPassword={false}
+                formType="register"
             />
             <section className="flex-grow flex items-center justify-center lg:ml-72 p-4">
                 <figure className="flex items-center lg:items-start lg:justify-between">
