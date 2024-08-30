@@ -1,4 +1,8 @@
-export default function Button() {
+interface ButtonProps {
+    title: string;
+}
+
+export default function Button({ title }: ButtonProps) {
     return (
         <button 
             className="
@@ -11,7 +15,7 @@ export default function Button() {
                 hover:bg-primary-blue-dark
             "
         >
-            Entrar
+            { title }
         </button>
     )
 }

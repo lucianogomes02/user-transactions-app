@@ -1,10 +1,6 @@
-interface InputProps {
-    label: string;
-    inputType: string;
-    placeholder: string;
-}
+import FormInputProps from "../../types/FormInputProps"
 
-export default function FormInput({ label, inputType, placeholder }: InputProps) {
+export default function FormInput({ label, inputType, placeholder }: FormInputProps) {
     return (
         <section className="flex flex-col mb-4">
             <label className="mb-1 text-left text-text-primary">{label}</label>
