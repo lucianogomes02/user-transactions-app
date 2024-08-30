@@ -4,7 +4,11 @@ import Button from "../Button/Button";
 import AsideFormProps from "../../types/AsideFormProps";
 
 
-export default function AsideForm({ title, formInputs, checkboxLabel, buttonTitle }: AsideFormProps) {
+export default function AsideForm({ 
+    title, formInputs, checkboxLabel, 
+    buttonTitle, authSectionLabel, 
+    authSectionLink, authSectionLinkText 
+}: AsideFormProps) {
     return (
         <aside className="max-w-full lg:w-96 bg-white flex flex-col items-center justify-center lg:fixed lg:left-0 lg:top-0 lg:h-full p-4">
             <section className="flex flex-col items-center w-full pb-8">
@@ -36,8 +40,8 @@ export default function AsideForm({ title, formInputs, checkboxLabel, buttonTitl
                 </section>
                 <Button title={ buttonTitle } />
                 <section className="flex justify-center mt-4 gap-2">
-                    <label className="text-text-primary">Não tem uma conta?</label>
-                    <a href={`/register`} className="text-primary-blue">Cadastre-se</a>
+                    <label className="text-text-primary">{ authSectionLabel }</label>
+                    <a href={ authSectionLink } className="text-primary-blue">{ authSectionLinkText }</a>
                 </section>
             </section>
         </aside>

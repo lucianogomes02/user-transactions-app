@@ -14,6 +14,9 @@ export default function SignIn() {
                 ]}
                 checkboxLabel="Ao se cadastrar você concorda com nossos Termos de Uso e Política de Privacidade."
                 buttonTitle="Cadastrar"
+                authSectionLabel="Já tem uma conta?"
+                authSectionLink="/login"
+                authSectionLinkText="Faça login"
             />
             <section className="flex-grow flex items-center justify-center lg:ml-96 p-4">
                 <figure className="flex items-center lg:items-start lg:justify-between">

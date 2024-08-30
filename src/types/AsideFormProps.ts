@@ -5,4 +5,7 @@ export default interface AsideFormProps {
     formInputs: FormInputProps[];
     checkboxLabel: string;
     buttonTitle: string;
+    authSectionLabel: string;
+    authSectionLink: string;
+    authSectionLinkText: string;
   }
