@@ -1,4 +1,5 @@
 import './App.css'
+import './index.css'
 import Login from './pages/Login/Login'
 
 function App() {
