@@ -1,10 +1,10 @@
 interface ButtonProps {
     title: string;
     type?: "submit" | "button";
-    submitHandler?: (event: React.FormEvent) => void;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function Button({ title, type }: ButtonProps) {
+export default function Button({ title, type, onClick }: ButtonProps) {
     return (
         <button
             type={ type } 
@@ -17,6 +17,7 @@ export default function Button({ title, type }: ButtonProps) {
                 transition-all 
                 hover:bg-primary-blue-dark
             "
+            onClick={onClick}
         >
             { title }
         </button>

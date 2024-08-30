@@ -1,3 +1,4 @@
+import React from "react";
 import FormInput from "../FormInput/FormInput";
 import Checkbox from "../Checkbox/Checkbox";
 import Button from "../Button/Button";
@@ -18,7 +19,7 @@ export default function AsideForm({
     authSectionLink, authSectionLinkText,
     showForgotPassword, formType
 }: AsideFormProps) {
-    const { isOpen, setIsOpen } = useModal(); 
+    const { isOpen, setIsOpen } = useModal();
 
     const users: User[] = [];
 
@@ -35,7 +36,6 @@ export default function AsideForm({
         users.push(user);
         console.log(users);
         form.reset();
-
         setIsOpen(true);
     }
 
@@ -99,5 +99,5 @@ export default function AsideForm({
             </section>
             <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} />
         </aside>
-    )
+    );
 }
