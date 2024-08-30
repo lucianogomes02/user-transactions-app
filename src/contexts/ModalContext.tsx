@@ -2,7 +2,11 @@ import { createContext, useState } from "react";
 
 interface ModalContextType {
     isOpen: boolean;
-    setIsOpen: (isOpen: boolean) => void;
+    setIsOpen: (
+        isOpen: boolean,
+        image?: string,
+        message?: string,
+    ) => void;
 }
 
 export const ModalContext = createContext<ModalContextType | null>(null);

@@ -5,6 +5,7 @@ import Login from './pages/Login/Login'
 import SignIn from './pages/SignIn/SignIn'
 import { AuthContextProvider } from './contexts/AuthContext'
 import { ModalContextProvider } from './contexts/ModalContext'
+import ModalHandler from './components/Modal/ModalHandler'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <AuthContextProvider>
         <ModalContextProvider>
           <BrowserRouter>
+            <ModalHandler />
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/login" element={<Login />} />

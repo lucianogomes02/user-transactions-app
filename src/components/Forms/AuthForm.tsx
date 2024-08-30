@@ -4,7 +4,6 @@ import Checkbox from "../Checkbox/Checkbox";
 import Button from "../Button/Button";
 import AsideFormProps from "../../types/AuthFormProps";
 import { useModal } from "../../hooks/useModal";
-import Modal from "../Modal/Modal";
 
 interface User {
     name: string;
@@ -36,7 +35,7 @@ export default function AsideForm({
         users.push(user);
         console.log(users);
         form.reset();
-        setIsOpen(true);
+        setIsOpen(!isOpen);
     }
 
     const handleLogin = (event: React.FormEvent) => {
@@ -97,7 +96,6 @@ export default function AsideForm({
                     <a href={ authSectionLink } className="text-primary-blue">{ authSectionLinkText }</a>
                 </section>
             </section>
-            <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} />
         </aside>
     );
 }
