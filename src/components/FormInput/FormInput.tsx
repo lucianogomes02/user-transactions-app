@@ -23,6 +23,7 @@ export default function FormInput({ name, label, inputType, placeholder }: FormI
                         bg-background-primary text-text-secondary rounded-lg" 
                     type={passwordIsVisible ? "text" : inputType}
                     placeholder={placeholder}
+                    required
                 />
                 {inputType === 'password' && (
                         <button
