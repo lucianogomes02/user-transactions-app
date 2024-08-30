@@ -14,7 +14,7 @@ export default function AsideForm() {
                     />
                 </figure>
                 <figcaption className="text-3xl font-bold text-text-primary">
-                    Log in
+                    Entrar
                 </figcaption>
             </section>
             <section className="text-center w-full">

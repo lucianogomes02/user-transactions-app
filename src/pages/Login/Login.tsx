@@ -9,7 +9,7 @@ export default function Login() {
                     <img 
                         src="src/assets/home-illustration.svg" 
                         alt="Ilustração Home"
-                        className="w-full max-w-xs lg:max-w-2xl"
+                        className="w-full max-w-xs lg:max-w-2xl md:max-w-xs sm:max-w-44"
                     />
                     <figcaption className="
                         flex items-center 
@@ -18,7 +18,8 @@ export default function Login() {
                         mt-4
                         lg:mt-0 lg:ml-6 
                         text-center lg:text-left
-                        text-7xl font-bold
+                        lg:text-7xl md:text-4xl
+                        font-bold
                         text-primary-blue
                         w-full"
                     >
