@@ -1,21 +1,29 @@
-import FormInputProps from "../../types/FormInputProps"
-import { FaEye, FaEyeSlash } from 'react-icons/fa'
-import { useState } from "react"
+import FormInputProps from "../../types/FormInputProps";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useState } from "react";
 
-export default function FormInput({ name, label, inputType, placeholder, onChange, style, onBlur }: FormInputProps, key: number) {
-    const [passwordIsVisible, setPasswordVisible] = useState(false)
+export default function FormInput({
+    name,
+    label,
+    inputType,
+    placeholder,
+    onChange,
+    style,
+    onBlur,
+    value
+}: FormInputProps) {
+    const [passwordIsVisible, setPasswordVisible] = useState(false);
 
     const togglePasswordVisibility = () => {
-        setPasswordVisible(!passwordIsVisible)
-     }
+        setPasswordVisible(!passwordIsVisible);
+    };
 
     return (
         <section className="flex flex-col mb-4">
             <label className="mb-1 text-left text-text-primary">{label}</label>
             <section className="relative w-80">
                 <input
-                    name={ name }
-                    key={ key }
+                    name={name}
                     className="
                         w-80 h-12 p-2 
                         border shadow-sm
@@ -27,21 +35,22 @@ export default function FormInput({ name, label, inputType, placeholder, onChang
                     onChange={onChange}
                     onBlur={onBlur}
                     style={style}
+                    value={value}
                 />
                 {inputType === 'password' && (
-                        <button
-                            type="button"
-                            onClick={togglePasswordVisibility}
-                            className="absolute inset-y-0 right-2 flex items-center text-text-secondary focus:outline-none"
-                        >
-                            {passwordIsVisible ? (
-                                <FaEyeSlash className="w-5 h-5" color="blue" />
-                            ) : (
-                                <FaEye className="w-5 h-5" />
-                            )}
-                        </button>
-                    )}
+                    <button
+                        type="button"
+                        onClick={togglePasswordVisibility}
+                        className="absolute inset-y-0 right-2 flex items-center text-text-secondary focus:outline-none"
+                    >
+                        {passwordIsVisible ? (
+                            <FaEyeSlash className="w-5 h-5" />
+                        ) : (
+                            <FaEye className="w-5 h-5" />
+                        )}
+                    </button>
+                )}
             </section>
         </section>
-    )
+    );
 }

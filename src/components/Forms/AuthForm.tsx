@@ -21,7 +21,9 @@ export default function AsideForm({
     const { setIsOpen } = useModal();
 
     const [email, setEmail] = useState("");
+    const [cpf, setCpf] = useState("");
     const [isEmailValid, setIsEmailValid] = useState(true);
+    const [isCpfValid, setIsCpfValid] = useState(true);
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isPasswordMatch, setIsPasswordMatch] = useState(false);
@@ -31,11 +33,11 @@ export default function AsideForm({
         if (formType === "register") {
             const passwordsMatch = password === confirmPassword;
             setIsPasswordMatch(passwordsMatch);
-            setIsButtonDisabled(!passwordsMatch || password === "" || !isEmailValid);
+            setIsButtonDisabled(!passwordsMatch || password === "" || !isEmailValid || !isCpfValid);
         } else {
-            setIsButtonDisabled(!isEmailValid);
+            setIsButtonDisabled(!isEmailValid || !isCpfValid);
         }
-    }, [password, confirmPassword, formType, isEmailValid]);
+    }, [password, confirmPassword, formType, isEmailValid, isCpfValid]);
 
     const users: User[] = [];
 
@@ -52,8 +54,21 @@ export default function AsideForm({
     }
 
     const validateEmail = () => {
-        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/g;
+        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
         return emailRegex.test(email);
+    }
+
+    const validateCPF = (cpf: string) => { 
+        const cpfRegex = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
+        return cpfRegex.test(cpf);
+    }
+
+    const formatCPF = (value: string) => {
+        value = value.replace(/\D/g, "");
+        if (value.length <= 3) return value;
+        if (value.length <= 6) return `${value.slice(0, 3)}.${value.slice(3)}`;
+        if (value.length <= 9) return `${value.slice(0, 3)}.${value.slice(3, 6)}.${value.slice(6)}`;
+        return `${value.slice(0, 3)}.${value.slice(3, 6)}.${value.slice(6, 9)}-${value.slice(9, 11)}`;
     }
 
     const handleRegister = (event: React.FormEvent) => {
@@ -97,8 +112,22 @@ export default function AsideForm({
         }
     }
 
+    const handleChange = (inputName: string, event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        if (inputName === "email") {
+            setEmail(value);
+            setIsEmailValid(validateEmail());
+        } else if (inputName === "cpf") {
+            const formattedCpf = formatCPF(value);
+            setCpf(formattedCpf);
+            setIsCpfValid(validateCPF(formattedCpf));
+        }
+        checkPasswordMatch(inputName, event);
+    }
+
     const handleBlur = () => {
         setIsEmailValid(validateEmail());
+        setIsCpfValid(validateCPF(cpf));
     }
 
     return (
@@ -124,18 +153,13 @@ export default function AsideForm({
                             inputType={inputProps.inputType}
                             placeholder={inputProps.placeholder}
                             name={inputProps.name.toLowerCase()}
-                            onChange={(event) => {
-                                const inputName = inputProps.name.toLowerCase();
-                                if (inputName === "email") {
-                                    const value = event.target.value;
-                                    setEmail(value);
-                                    setIsEmailValid(validateEmail());
-                                }
-                                checkPasswordMatch(inputName, event);
-                            }}
-                            onBlur={inputProps.name.toLowerCase() === "email" ? handleBlur : undefined}
+                            value={inputProps.name.toLowerCase() === "cpf" ? cpf : undefined}
+                            onChange={(event) => handleChange(inputProps.name.toLowerCase(), event)}
+                            onBlur={inputProps.name.toLowerCase() === "email" || inputProps.name.toLowerCase() === "cpf" ? handleBlur : undefined}
                             style={{ 
                                 borderColor: (inputProps.name.toLowerCase() === "email" && !isEmailValid)
+                                    ? 'red'
+                                    : (inputProps.name.toLowerCase() === "cpf" && !isCpfValid)
                                     ? 'red'
                                     : (formType === "register" && inputProps.name.toLowerCase() === "confirm_password" && !isPasswordMatch)
                                     ? 'red'
