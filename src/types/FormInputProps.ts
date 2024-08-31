@@ -4,5 +4,6 @@ export default interface FormInputProps {
     inputType: string;
     placeholder: string;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
     style?: object;
 }

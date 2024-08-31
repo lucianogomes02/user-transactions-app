@@ -2,7 +2,7 @@ import FormInputProps from "../../types/FormInputProps"
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { useState } from "react"
 
-export default function FormInput({ name, label, inputType, placeholder, onChange, style }: FormInputProps, key: number) {
+export default function FormInput({ name, label, inputType, placeholder, onChange, style, onBlur }: FormInputProps, key: number) {
     const [passwordIsVisible, setPasswordVisible] = useState(false)
 
     const togglePasswordVisibility = () => {
@@ -25,6 +25,7 @@ export default function FormInput({ name, label, inputType, placeholder, onChang
                     placeholder={placeholder}
                     required
                     onChange={onChange}
+                    onBlur={onBlur}
                     style={style}
                 />
                 {inputType === 'password' && (

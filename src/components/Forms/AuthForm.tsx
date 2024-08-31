@@ -20,6 +20,8 @@ export default function AsideForm({
 }: AsideFormProps) {
     const { setIsOpen } = useModal();
 
+    const [email, setEmail] = useState("");
+    const [isEmailValid, setIsEmailValid] = useState(true);
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isPasswordMatch, setIsPasswordMatch] = useState(false);
@@ -29,9 +31,11 @@ export default function AsideForm({
         if (formType === "register") {
             const passwordsMatch = password === confirmPassword;
             setIsPasswordMatch(passwordsMatch);
-            setIsButtonDisabled(!passwordsMatch || password === "");
+            setIsButtonDisabled(!passwordsMatch || password === "" || !isEmailValid);
+        } else {
+            setIsButtonDisabled(!isEmailValid);
         }
-    }, [password, confirmPassword, formType]);
+    }, [password, confirmPassword, formType, isEmailValid]);
 
     const users: User[] = [];
 
@@ -45,6 +49,11 @@ export default function AsideForm({
                 setConfirmPassword(fieldValue);
             }
         }
+    }
+
+    const validateEmail = () => {
+        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/g;
+        return emailRegex.test(email);
     }
 
     const handleRegister = (event: React.FormEvent) => {
@@ -81,12 +90,15 @@ export default function AsideForm({
     }
 
     const handleSubmit = (event: React.FormEvent) => {
-        console.log("Form submitted");
         if (formType === "register") {
             handleRegister(event);
         } else if (formType === "login") {
             handleLogin(event);
         }
+    }
+
+    const handleBlur = () => {
+        setIsEmailValid(validateEmail());
     }
 
     return (
@@ -106,27 +118,38 @@ export default function AsideForm({
             <section className="text-center w-full">
                 <form className="flex flex-col items-center" onSubmit={ handleSubmit }>
                     {formInputs.map((inputProps, index) => (
-                            <FormInput 
-                                key={index}
-                                label={inputProps.label}
-                                inputType={inputProps.inputType}
-                                placeholder={inputProps.placeholder}
-                                name={inputProps.name.toLowerCase()}
-                                onChange={(event) => {
-                                    checkPasswordMatch(inputProps.name.toLowerCase(), event);
-                                }}
-                                style={{ 
-                                    borderColor: formType === "register" && inputProps.name.toLowerCase() === "confirm_password" && !isPasswordMatch ? 'red' : undefined
-                                }}
-                            />
-                        ))}
-                <section className="flex justify-center mt-4 mb-4 w-full gap-20 flex-wrap">
-                    <Checkbox label={checkboxLabel} />
-                    {showForgotPassword && 
-                        <a href="#" className="text-primary-blue">Esqueceu a senha?</a>
-                    }
-                </section>
-                <Button title={ buttonTitle } type="submit" disabled={formType === "register" ? isButtonDisabled : false} />
+                        <FormInput 
+                            key={index}
+                            label={inputProps.label}
+                            inputType={inputProps.inputType}
+                            placeholder={inputProps.placeholder}
+                            name={inputProps.name.toLowerCase()}
+                            onChange={(event) => {
+                                const inputName = inputProps.name.toLowerCase();
+                                if (inputName === "email") {
+                                    const value = event.target.value;
+                                    setEmail(value);
+                                    setIsEmailValid(validateEmail());
+                                }
+                                checkPasswordMatch(inputName, event);
+                            }}
+                            onBlur={inputProps.name.toLowerCase() === "email" ? handleBlur : undefined}
+                            style={{ 
+                                borderColor: (inputProps.name.toLowerCase() === "email" && !isEmailValid)
+                                    ? 'red'
+                                    : (formType === "register" && inputProps.name.toLowerCase() === "confirm_password" && !isPasswordMatch)
+                                    ? 'red'
+                                    : undefined
+                            }}
+                        />
+                    ))}
+                    <section className="flex justify-center mt-4 mb-4 w-full gap-20 flex-wrap">
+                        <Checkbox label={checkboxLabel} />
+                        {showForgotPassword && 
+                            <a href="#" className="text-primary-blue">Esqueceu a senha?</a>
+                        }
+                    </section>
+                    <Button title={ buttonTitle } type="submit" disabled={formType === "register" ? isButtonDisabled : false} />
                 </form>
                 <section className="flex justify-center mt-4 gap-2">
                     <label className="text-text-primary">{ authSectionLabel }</label>
