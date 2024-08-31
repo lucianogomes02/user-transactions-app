@@ -3,4 +3,6 @@ export default interface FormInputProps {
     label: string;
     inputType: string;
     placeholder: string;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    style?: object;
 }

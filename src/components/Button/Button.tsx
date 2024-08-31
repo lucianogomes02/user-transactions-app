@@ -1,10 +1,11 @@
 interface ButtonProps {
     title: string;
     type?: "submit" | "button";
+    disabled?: boolean;
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function Button({ title, type, onClick }: ButtonProps) {
+export default function Button({ title, type, onClick, disabled }: ButtonProps) {
     return (
         <button
             type={ type } 
@@ -15,9 +16,11 @@ export default function Button({ title, type, onClick }: ButtonProps) {
                 font-bold 
                 rounded-lg 
                 transition-all 
-                hover:bg-primary-blue-dark
+                hover:bg-blue-500
             "
+            disabled={ disabled }
             onClick={onClick}
+            style={{ cursor: disabled ? "not-allowed" : "pointer", opacity: disabled ? 0.5 : 1 }}
         >
             { title }
         </button>

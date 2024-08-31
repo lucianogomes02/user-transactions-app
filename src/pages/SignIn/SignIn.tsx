@@ -1,16 +1,16 @@
-import AsideForm from "../../components/Forms/AuthForm"
+import AuthForm from "../../components/Forms/AuthForm"
 
 export default function SignIn() {
     return (
         <main className="min-h-screen flex flex-col lg:flex-row">
-            <AsideForm 
+            <AuthForm 
                 title="Cadastre-se"
                 formInputs={[
                     { name: "name", label: "Nome", inputType: "text", placeholder: "Digite seu nome completo" },
                     { name: "cpf", label: "CPF", inputType: "text", placeholder: "Digite seu CPF" },
                     { name: "email", label: "E-mail", inputType: "email", placeholder: "Digite seu e-mail" },
                     { name: "password", label: "Senha", inputType: "password", placeholder: "Digite sua senha" },
-                    { name: "passwordConfirmation", label: "Confirme sua senha", inputType: "password", placeholder: "Digite sua senha novamente" }
+                    { name: "confirm_password", label: "Confirme sua senha", inputType: "password", placeholder: "Digite sua senha novamente" }
                 ]}
                 checkboxLabel="Concordo com nossos Termos de Uso e Política de Privacidade."
                 buttonTitle="Cadastrar"

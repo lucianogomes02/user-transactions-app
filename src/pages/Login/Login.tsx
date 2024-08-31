@@ -1,9 +1,9 @@
-import AsideForm from "../../components/Forms/AuthForm"
+import AuthForm from "../../components/Forms/AuthForm"
 
 export default function Login() {
     return (
         <main className="min-h-screen flex flex-col lg:flex-row">
-            <AsideForm
+            <AuthForm
                 title="Faça seu login"
                 formInputs={[
                     { name: "email", label: "E-mail", inputType: "email", placeholder: "Digite seu e-mail" },

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import FormInput from "../FormInput/FormInput";
 import Checkbox from "../Checkbox/Checkbox";
 import Button from "../Button/Button";
@@ -20,7 +20,32 @@ export default function AsideForm({
 }: AsideFormProps) {
     const { setIsOpen } = useModal();
 
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [isPasswordMatch, setIsPasswordMatch] = useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+    useEffect(() => {
+        if (formType === "register") {
+            const passwordsMatch = password === confirmPassword;
+            setIsPasswordMatch(passwordsMatch);
+            setIsButtonDisabled(!passwordsMatch || password === "");
+        }
+    }, [password, confirmPassword, formType]);
+
     const users: User[] = [];
+
+    const checkPasswordMatch = (inputName: string, event: React.ChangeEvent<HTMLInputElement>) => {
+        const fieldValue: string = event.target.value;
+        if (formType === "register") {
+            if (inputName === "password") {
+                setPassword(fieldValue);
+            }
+            if (inputName === "confirm_password") {
+                setConfirmPassword(fieldValue);
+            }
+        }
+    }
 
     const handleRegister = (event: React.FormEvent) => {
         try {
@@ -34,7 +59,6 @@ export default function AsideForm({
                 password: formData.get('password') as string,
             }
             users.push(user);
-            console.log(users);
             setIsOpen(true, "src/assets/modal-success.svg", "Cadastro realizado com sucesso!");
         } catch (error: unknown | Error) {
             setIsOpen(true, "src/assets/modal-success.svg", error as string);
@@ -57,6 +81,7 @@ export default function AsideForm({
     }
 
     const handleSubmit = (event: React.FormEvent) => {
+        console.log("Form submitted");
         if (formType === "register") {
             handleRegister(event);
         } else if (formType === "login") {
@@ -87,6 +112,12 @@ export default function AsideForm({
                                 inputType={inputProps.inputType}
                                 placeholder={inputProps.placeholder}
                                 name={inputProps.name.toLowerCase()}
+                                onChange={(event) => {
+                                    checkPasswordMatch(inputProps.name.toLowerCase(), event);
+                                }}
+                                style={{ 
+                                    borderColor: formType === "register" && inputProps.name.toLowerCase() === "confirm_password" && !isPasswordMatch ? 'red' : undefined
+                                }}
                             />
                         ))}
                 <section className="flex justify-center mt-4 mb-4 w-full gap-20 flex-wrap">
@@ -95,7 +126,7 @@ export default function AsideForm({
                         <a href="#" className="text-primary-blue">Esqueceu a senha?</a>
                     }
                 </section>
-                <Button title={ buttonTitle } type="submit" />
+                <Button title={ buttonTitle } type="submit" disabled={formType === "register" ? isButtonDisabled : false} />
                 </form>
                 <section className="flex justify-center mt-4 gap-2">
                     <label className="text-text-primary">{ authSectionLabel }</label>

@@ -1,6 +1,6 @@
 import FormInputProps from './FormInputProps';
 
-export default interface AsideFormProps {
+export default interface AuthFormProps {
     title: string;
     formInputs: FormInputProps[];
     checkboxLabel: string;
