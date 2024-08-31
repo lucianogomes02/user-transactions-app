@@ -4,6 +4,7 @@ import Checkbox from "../Checkbox/Checkbox";
 import Button from "../Button/Button";
 import AuthFormProps from "../../types/AuthFormProps";
 import { useModal } from "../../hooks/useModal";
+import { validateEmail, validateCPF, formatCPF } from "../../libs/validators";
 
 interface User {
     name: string;
@@ -17,28 +18,8 @@ interface FormValues {
     email: string;
     cpf: string;
     password: string;
-    confirmPassword: string;
+    confirm_password: string;
 }
-
-const validateEmail = (email: string): boolean => {
-    // eslint-disable-next-line no-useless-escape
-    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    return emailRegex.test(email);
-};
-
-const validateCPF = (cpf: string): boolean => {
-    // eslint-disable-next-line no-useless-escape
-    const cpfRegex = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
-    return cpfRegex.test(cpf);
-};
-
-const formatCPF = (value: string): string => {
-    value = value.replace(/\D/g, "");
-    if (value.length <= 3) return value;
-    if (value.length <= 6) return `${value.slice(0, 3)}.${value.slice(3)}`;
-    if (value.length <= 9) return `${value.slice(0, 3)}.${value.slice(3, 6)}.${value.slice(6)}`;
-    return `${value.slice(0, 3)}.${value.slice(3, 6)}.${value.slice(6, 9)}-${value.slice(9, 11)}`;
-};
 
 const AuthForm = ({
     title, formInputs, checkboxLabel, 
@@ -53,7 +34,7 @@ const AuthForm = ({
         email: "",
         cpf: "",
         password: "",
-        confirmPassword: ""
+        confirm_password: ""
     });
     const [isEmailValid, setIsEmailValid] = useState(true);
     const [isCpfValid, setIsCpfValid] = useState(true);
@@ -62,7 +43,7 @@ const AuthForm = ({
 
     useEffect(() => {
         if (formType === "register") {
-            const passwordsMatch = formValues.password === formValues.confirmPassword;
+            const passwordsMatch = formValues.password === formValues.confirm_password;
             setIsPasswordMatch(passwordsMatch);
             setIsButtonDisabled(
                 !passwordsMatch ||
@@ -84,14 +65,14 @@ const AuthForm = ({
             if (inputName === "email") {
                 setIsEmailValid(validateEmail(value));
             }
-            if (inputName === "cpf") {
-                const formattedCpf = formatCPF(value);
-                setIsCpfValid(validateCPF(formattedCpf));
-                updatedValues.cpf = formattedCpf;
-            }
             if (formType === "register") {
-                if (inputName === "password" || inputName === "confirmPassword") {
-                    setIsPasswordMatch(updatedValues.password === updatedValues.confirmPassword);
+                if (inputName === "password" || inputName === "confirm_password") {
+                    setIsPasswordMatch(updatedValues.password === updatedValues.confirm_password);
+                }
+                if (inputName === "cpf") {
+                    const formattedCpf = formatCPF(value);
+                    setIsCpfValid(validateCPF(formattedCpf));
+                    updatedValues.cpf = formattedCpf;
                 }
             }
 
@@ -101,7 +82,9 @@ const AuthForm = ({
 
     const handleBlur = () => {
         setIsEmailValid(validateEmail(formValues.email));
-        setIsCpfValid(validateCPF(formValues.cpf));
+        if (formType === "register") {
+            setIsCpfValid(validateCPF(formValues.cpf));
+        }
     };
 
     const handleSubmit = (event: FormEvent) => {
@@ -142,7 +125,7 @@ const AuthForm = ({
             email: "",
             cpf: "",
             password: "",
-            confirmPassword: ""
+            confirm_password: ""
         });
     }
 
@@ -162,7 +145,7 @@ const AuthForm = ({
                     style={{
                         borderColor: (name === "email" && !isEmailValid) ? 'red' :
                             (name === "cpf" && !isCpfValid) ? 'red' :
-                            (formType === "register" && name === "confirmPassword" && !isPasswordMatch) ? 'red' :
+                            (formType === "register" && name === "confirm_password" && !isPasswordMatch) ? 'red' :
                             undefined
                     }}
                 />
