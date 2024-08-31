@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import { useState, useEffect } from "react";
 import FormInput from "../FormInput/FormInput";
 import Checkbox from "../Checkbox/Checkbox";
