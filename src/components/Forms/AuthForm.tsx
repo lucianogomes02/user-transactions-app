@@ -3,7 +3,7 @@ import FormInput from "../FormInput/FormInput";
 import Checkbox from "../Checkbox/Checkbox";
 import Button from "../Button/Button";
 import AsideFormProps from "../../types/AuthFormProps";
-import { ShowErrorModal, ShowSuccessModal } from "../../libs/Modal";
+import { useModal } from "../../hooks/useModal";
 
 interface User {
     name: string;
@@ -18,6 +18,8 @@ export default function AsideForm({
     authSectionLink, authSectionLinkText,
     showForgotPassword, formType
 }: AsideFormProps) {
+    const { setIsOpen } = useModal();
+
     const users: User[] = [];
 
     const handleRegister = (event: React.FormEvent) => {
@@ -33,9 +35,9 @@ export default function AsideForm({
             }
             users.push(user);
             console.log(users);
-            ShowSuccessModal("Cadastro realizado com sucesso!");
+            setIsOpen(true, "src/assets/modal-success.svg", "Cadastro realizado com sucesso!");
         } catch (error: unknown | Error) {
-            ShowErrorModal((error as Error).message);
+            setIsOpen(true, "src/assets/modal-success.svg", error as string);
         } finally {
             const form = event.target as HTMLFormElement;
             form.reset();
