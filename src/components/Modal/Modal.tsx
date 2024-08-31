@@ -15,7 +15,7 @@ export default function Modal({ isOpen, image, message, onClose }: ModalProps) {
             onClick={onClose}
         >
             <section 
-                className="relative flex flex-col items-center justify-center w-1/4 h-96 bg-white shadow-lg rounded-lg p-6 gap-5"
+                className="relative flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-6 gap-5"
                 onClick={(e) => e.stopPropagation()}
             >
                 <IoCloseOutline 

@@ -19,7 +19,7 @@ export default function FormInput({
     };
 
     return (
-        <section className="flex flex-col mb-4">
+        <section className="flex flex-col mb-1">
             <label className="mb-1 text-left text-text-primary">{label}</label>
             <section className="relative w-80">
                 <input

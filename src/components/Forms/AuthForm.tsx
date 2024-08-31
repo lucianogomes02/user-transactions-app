@@ -154,8 +154,8 @@ const AuthForm = ({
     );
 
     return (
-        <aside className="max-w-full lg:w-96 bg-white flex flex-col items-center justify-center lg:fixed lg:left-0 lg:top-0 lg:h-full p-4">
-            <section className="flex flex-col items-center w-full pb-8">
+        <aside className="min-w-fit min-h-full lg:w-96 bg-white flex flex-col items-center justify-center lg:fixed lg:left-0 lg:top-0 p-4">
+            <section className="flex flex-col items-center w-full pb-2">
                 <figure className="flex items-center justify-center mb-4">
                     <img src="src/assets/logo.svg" alt="Logo da empresa" className="w-24" />
                 </figure>

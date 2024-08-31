@@ -1,4 +1,5 @@
 import AuthForm from "../../components/Forms/AuthForm"
+import AuthPagesFigure from "../../components/AuthPagesFigure/AuthPagesFigure"
 
 export default function Login() {
     return (
@@ -17,28 +18,11 @@ export default function Login() {
                 showForgotPassword={true}
                 formType="login"
             />
-            <section className="flex-grow flex items-center justify-center lg:ml-96 p-4">
-                <figure className="flex items-center lg:items-start lg:justify-between">
-                    <img 
-                        src="src/assets/home-illustration.svg" 
-                        alt="Ilustração Home"
-                        className="w-full max-w-xs lg:max-w-2xl md:max-w-xs sm:max-w-44"
-                    />
-                    <figcaption className="
-                        flex items-center 
-                        justify-center 
-                        p-4 
-                        mt-4
-                        lg:mt-0 lg:ml-6 
-                        text-center lg:text-left
-                        lg:text-7xl md:text-4xl
-                        font-bold
-                        text-primary-blue
-                        w-full"
-                    >
-                        Facilitando sua gestão financeira.
-                    </figcaption>
-                </figure>
+            <section className="flex-grow flex items-center justify-center lg:ml-80">
+                <AuthPagesFigure 
+                    label="Facilitando a gestão de suas finanças."
+                    figureSrc="/src/assets/login-illustration.svg"
+                />
             </section>
         </main>
     )
